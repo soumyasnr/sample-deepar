@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-
-  <link rel="stylesheet" href="./vendor/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" href="./index.css">
-  <script src="./vendor/axios-0-21-1.min.js"></script>
-
-  <style>
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>    
+    <title>DeepAR</title>
+    <style>
 
       canvas.deepar { 
         border: 0px none; 
@@ -106,14 +99,15 @@
       .slick-slide {
         width: 130px;
       }
-  </style>
-  
-</head>
-<body>
-  
+    </style>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+  </head>
+  <body>
+
     <canvas class="deepar" id="deepar-canvas" oncontextmenu="event.preventDefault()"></canvas>
     <!-- <div id="loader-wrapper">
-      <span class="loader"></span></span>
+    <span class="loader"></span></span>
     </div> -->
 
     <div class="effect-carousel">
@@ -127,71 +121,401 @@
       <div><img class="thumb" src="thumbs/teddy_cigar.png"></div>
     </div>
 
-    
-  </div>
-  <div class="container">
-    <form id="join-form">
-      <div class="row join-info-group">
-         
-          <div class="col-sm">
-            <p class="join-info-text">Agora APP ID</p>
-            <input id="appid" type="text" placeholder="enter AppID">
-            
-          </div>
-          <div class="col-sm">
-            <p class="join-info-text">Agora Token</p>
-            <input id="token" type="text" placeholder="enter token">
-            
-          </div>
-          <div class="col-sm">
-            <p class="join-info-text">Agora Channel</p>
-            <input id="channel" type="text" placeholder="enter channel name" required>
-            
-          </div>
-          <div class="col-sm">
-            <p class="join-info-text">DeepAR License Key</p>
-            <input id="deeparLicenseKey" type="text" placeholder="enter DeepAR License Key" required>
-            
-          </div>
 
-          <!-- 41c7eb992d8f05bde20d072989909ad1c414d0232d53a2120f002b278806b056f9d40481d2c27711 -->
-      </div>
+    <div class="container">
+      <form id="join-form">
+        <div class="row join-info-group">
+           
+            <div class="col-sm">
+              <p class="join-info-text">Agora APP ID</p>
+              <input id="appid" type="text" placeholder="enter AppID">
+              
+            </div>
+            <div class="col-sm">
+              <p class="join-info-text">Agora Token</p>
+              <input id="token" type="text" placeholder="enter token">
+              
+            </div>
+            <div class="col-sm">
+              <p class="join-info-text">Agora Channel</p>
+              <input id="channel" type="text" placeholder="enter channel name" required>
+              
+            </div>
+            <div class="col-sm">
+              <p class="join-info-text">DeepAR License Key</p>
+              <input id="deeparLicenseKey" type="text" placeholder="enter DeepAR License Key" required>
+              
+            </div>
 
-      <div class="button-group">
-        <button id="join" type="submit" class="">Join</button>
-        <button id="leave" type="button" class="" disabled>Leave</button>
-      </div>
-    </form>
-
-    
-
-    <div class="row video-group">
-      <div class="col">
-        <p id="local-player-name" class="player-name"></p>
-        <div class="localWrapper">
-          <div id="local-player" class="player"></div>
-          <div class="local-player-ctrls"></div>
+            <!-- 41c7eb992d8f05bde20d072989909ad1c414d0232d53a2120f002b278806b056f9d40481d2c27711 -->
         </div>
-        <div id="local-screen-player" class=""></div>        
-      </div>
-      <div class="w-100"></div>
-      <div class="col">
-        <div id="remote-playerlist"></div>
+
+        <div class="button-group">
+          <button id="join" type="submit" class="">Join</button>
+          <button id="leave" type="button" class="" disabled>Leave</button>
+        </div>
+      </form>
+
+      
+
+      <div class="row video-group">
+        <div class="col">
+          <p id="local-player-name" class="player-name"></p>
+          <div class="localWrapper">
+            <div id="local-player" class="player"></div>
+            <div class="local-player-ctrls"></div>
+          </div>
+          <div id="local-screen-player" class=""></div>        
+        </div>
+        <div class="w-100"></div>
+        <div class="col">
+          <div id="remote-playerlist"></div>
+        </div>
       </div>
     </div>
-  </div>
 
 
-  <script src="./vendor/jquery-3.4.1.min.js"></script>
-  <script src="./vendor/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="lib/deepar.js"></script>
+
+    <script src="./AgoraRTC_N-4.3.0.js"></script>
+
+    <script type="text/javascript">
   
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script type="text/javascript" src="lib/deepar.js"></script>
 
-  <script src="./AgoraRTC_N-4.3.0.js"></script>
-  <script src="./index.js"></script>
+  // create Agora client
+  var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+  var clientScreenShare = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
 
-</body>
+  var localTracks = {
+    videoTrack: null,
+    audioTrack: null
+  };
+  var localUids = [];
+
+  var localScreenTrack = {
+    screenvideoTrack: null
+    // screenaudioTrack: null
+  };
+  var remoteUsers = {};
+  // Agora client options
+  var options = {
+    appid: null,
+    channel: null,
+    uid: null,
+    token: null
+  };
+
+  // Firefox 1.0+
+  var isFirefox = typeof InstallTrigger !== 'undefined';
+
+  // Chrome 1 - 79
+  var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
+  $("#join-form").submit(async function (e) {
+    e.preventDefault();
+    $("#join").attr("disabled", true);
+    try {
+      options.appid = $("#appid").val();
+      options.token = $("#token").val();
+      options.channel = $("#channel").val();
+      await join();
+      if(options.token) {
+        $("#success-alert-with-token").css("display", "block");
+      } else {
+        $("#success-alert a").attr("href", `index.html?appid=${options.appid}&channel=${options.channel}&token=${options.token}`);
+        $("#success-alert").css("display", "block");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      $("#leave").attr("disabled", false);
+    }
+  })
+
+  $("#leave").click(function (e) {
+    leave();
+  })
+
+  async function join() {
+
+    // add event listener to play remote tracks when remote user publishs.
+    client.on("user-published", handleUserPublished);
+    client.on("user-unpublished", handleUserUnpublished);
+    
+
+     //creating videostream from deepar canvas
+    // Find the canvas element to capture
+    var canvasElt = document.getElementById("deepar-canvas");
+
+    // Get the stream
+    var stream = canvasElt.captureStream(25);
+    // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    // .then((mediaStream) => {
+      // const videoMediaStreamTrack = mediaStream.getVideoTracks()[0];
+      // Create a custom video track
+// return AgoraRTC.createCustomVideoTrack({
+//   mediaStreamTrack: stream,
+// });
+    // })
+    // .then((localVideoTrack) => {
+    //   // ...
+    // });
+
+    var localvideoTrack = null;
+    // join a channel and create local tracks, we can use Promise.all to run them concurrently
+    [ options.uid, localTracks.audioTrack] = await Promise.all([
+      // join the channel
+      client.join(options.appid, options.channel, options.token || null),
+      // create local tracks, using microphone and camera
+      AgoraRTC.createMicrophoneAudioTrack(),
+      // AgoraRTC.createCameraVideoTrack()
+      // AgoraRTC.createCustomVideoTrack({
+      //   mediaStreamTrack: stream,
+      // })
+    ]);
+    localTracks.videoTrack = AgoraRTC.createCustomVideoTrack({
+      mediaStreamTrack: stream,
+    });
+
+
+    console.log("<<<<<<<<<<<<<localTracks.videoTrack>>>>>>>>>>>>");
+    // localTracks.videoTrack = localvideoTrack._mediaStreamTrack;
+    // localTracks.videoTrack = stream;
+    console.log(localTracks.videoTrack);
+    
+    localUids.push(options.uid);
+    
+
+   // const video = document.createElement('video');
+   //  video.srcObject = stream;
+
+    // startExternalVideo();
+
+    // play local video track
+    // localTracks.videoTrack.play("local-player");
+
+
+    
+    $("#local-player-name").text(`localVideo(${options.uid})`);
+    const player = $(`
+            <i class="fas fa-microphone"></i>
+            <i class="fas fa-video"></i>
+            <i class="fas fa-desktop"></i>
+      `);
+    $(".local-player-ctrls").html('');
+    $(".local-player-ctrls").append(player);
+    $(".local-player-ctrls").show();
+
+    $(".local-player-ctrls>i").click(function(event) {
+      event.preventDefault();
+      console.log($(event.target).attr('class'));
+      switch($(event.target).attr('class')){
+        case 'fas fa-microphone':
+            localTracks.audioTrack.setVolume(0);
+            $(event.target).toggleClass('fa-microphone fa-microphone-slash');
+            break;
+
+        case 'fas fa-microphone-slash':
+            localTracks.audioTrack.setVolume(100);
+            $(event.target).toggleClass('fa-microphone fa-microphone-slash');
+            break;
+
+        case 'fas fa-video':
+            localTracks.videoTrack.stop();
+            $(event.target).toggleClass('fa-video fa-video-slash');
+            break;
+
+        case 'fas fa-video-slash':
+            localTracks.videoTrack.play("local-player");
+            $(event.target).toggleClass('fa-video fa-video-slash');
+            break;
+
+        case 'fas fa-desktop':
+            if($(event.target).css('color') == 'rgb(0, 0, 0)'){
+              $(event.target).css('color','red');
+              Promise.all([startScreenCall()]).then(() => { 
+
+              });
+            }else{
+              leaveScreenShare();
+              $(event.target).css('color','rgb(0, 0, 0)');
+            }
+            
+        break;
+
+      }
+      console.log($(event.target).attr('class'));
+    });
+
+    // publish local tracks to channel
+    await client.publish(Object.values(localTracks));
+    console.log("publish success");
+  }
+
+      var canvasHeight = window.innerHeight;
+      var canvasWidth = window.innerWidth;
+      
+      // desktop, the width of the canvas is 0.66 * window height and on mobile it's fullscreen
+      if (window.innerWidth > window.innerHeight) {
+        canvasWidth = Math.floor(window.innerHeight*0.66);
+      }
+
+      var deepAR = DeepAR({ 
+        canvasWidth: canvasWidth, 
+        canvasHeight: canvasHeight,
+        licenseKey: '41c7eb992d8f05bde20d072989909ad1c414d0232d53a2120f002b278806b056f9d40481d2c27711',
+        canvas: document.getElementById('deepar-canvas'),
+        numberOfFaces: 1,
+        libPath: './lib',
+        segmentationInfoZip: 'segmentation.zip',
+        onInitialize: function() {
+          // start video immediately after the initalization, mirror = true
+          deepAR.startVideo(true);
+
+          // or we can setup the video element externally and call deepAR.setVideoElement (see startExternalVideo function below)
+
+          deepAR.switchEffect(0, 'slot', './effects/background_segmentation', function() {
+            // effect loaded
+          });
+        }
+      });
+
+      deepAR.onCameraPermissionAsked = function() {
+        console.log('camera permission asked');
+      };
+
+      deepAR.onCameraPermissionGranted = function() {
+        console.log('camera permission granted');
+      };
+
+      deepAR.onCameraPermissionDenied = function() {
+        console.log('camera permission denied');
+      };
+
+      deepAR.onScreenshotTaken = function(photo) {
+        console.log('screenshot taken');
+      };
+
+      deepAR.onImageVisibilityChanged = function(visible) {
+        console.log('image visible', visible);
+      };
+
+      deepAR.onFaceVisibilityChanged = function(visible) {
+        console.log('face visible', visible);
+      };
+
+      deepAR.onVideoStarted = function() {
+        var loaderWrapper = document.getElementById('loader-wrapper');
+        loaderWrapper.style.display = 'none';
+      };
+
+      deepAR.downloadFaceTrackingModel('lib/models-68-extreme.bin');
+
+       
+    
+    // Position the carousel to cover the canvas
+      if (window.innerWidth > window.innerHeight) {
+        var width = Math.floor(window.innerHeight*0.66);
+        var carousel = document.getElementsByClassName('effect-carousel')[0];
+        carousel.style.width = width + 'px';
+        carousel.style.marginLeft = (window.innerWidth-width)/2 + "px";
+      }
+
+
+      $(document).ready(function() {
+        $('.effect-carousel').slick({
+          slidesToShow: 1,
+          centerMode: true,
+          focusOnSelect: true,
+          arrows: false,
+          accessibility: false,
+          variableWidth: true
+        });
+
+        var effects = [
+          './effects/background_segmentation',
+          './effects/aviators',
+          './effects/beard',
+          './effects/dalmatian',
+          './effects/flowers',
+          './effects/koala',
+          './effects/lion',
+          './effects/teddycigar'
+        ];
+
+        $('.effect-carousel').on('afterChange', function(event, slick, currentSlide){
+          deepAR.switchEffect(0, 'slot', effects[currentSlide]);
+        });
+
+      });  
+    // function startExternalVideo() {
+
+    //   // create video element
+    //   var video = document.createElement('video');
+    //   video.muted = true;
+    //   video.loop = true;
+    //   video.controls = true;
+    //   video.setAttribute('playsinline', 'playsinline');
+    //   video.style.width = '100%';
+    //   video.style.height = '100%';
+
+    //   // put it somewhere in the DOM
+    //   var videoContainer = document.createElement('div');
+    //   videoContainer.appendChild(video);
+    //   videoContainer.style.width = '1px';
+    //   videoContainer.style.height = '1px';
+    //   videoContainer.style.position = 'absolute';
+    //   videoContainer.style.top = '0px';
+    //   videoContainer.style.left = '0px';
+    //   videoContainer.style['z-index'] = '-1';
+    //   document.body.appendChild(videoContainer);
+
+    //   navigator.mediaDevices.getUserMedia({video: true}).then(function(stream) {
+    //     try {
+    //       video.srcObject = stream;
+    //     } catch (error) {
+    //       video.src = URL.createObjectURL(stream);
+    //     }
+
+    //     const videoMediaStreamTrack = stream.getVideoTracks()[0];
+    //     // Create a custom video track
+    //     return AgoraRTC.createCustomVideoTrack({
+    //       mediaStreamTrack: videoMediaStreamTrack,
+    //     });
+
+    //     setTimeout(function() {
+    //       video.play();
+    //     }, 50);
+    //   }).catch(function(error) {
+
+    //   });
+
+    //   // tell the DeepAR SDK about our new video element
+    //   // deepAR.setVideoElement(video, true);
+    // }
+
+
+
+function handleUserPublished(user, mediaType) {
+  const id = user.uid;
+  //checking whether published uid is any of the local clients. Do not subscribe to local stream, it costs more.
+  if(!localUids.includes(id)){
+    remoteUsers[id] = user;
+    subscribe(user, mediaType);
+  }
+  
+}
+
+function handleUserUnpublished(user) {
+  const id = user.uid;
+  delete remoteUsers[id];
+  $(`#player-wrapper-${id}`).remove();
+}
+
+         
+    </script>
+  </body>
 </html>
